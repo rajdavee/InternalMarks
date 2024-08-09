@@ -1,7 +1,8 @@
-// models/Student.js
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
-const StudentSchema = new mongoose.Schema({
+const studentSchema = new mongoose.Schema({
   enrollmentNumber: {
     type: String,
     required: true,
@@ -36,8 +37,27 @@ const StudentSchema = new mongoose.Schema({
       },
     }
   ],
+  resetPasswordToken: String,
+  resetPasswordExpires: Date,
+  role: {
+    type: String,
+    enum: ['student'],
+    default: 'student',
+  },
 }, { timestamps: true });
+;
 
-const Student = mongoose.model('Student', StudentSchema);
+
+studentSchema.methods.comparePassword = async function(password) {
+  return bcrypt.compare(password, this.password);
+};
+
+// Method to generate JWT token
+studentSchema.methods.generateAuthToken = function() {
+  const token = jwt.sign({ id: this._id, role: this.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
+  return token;
+};
+
+const Student = mongoose.model('Student', studentSchema);
 
 module.exports = Student;

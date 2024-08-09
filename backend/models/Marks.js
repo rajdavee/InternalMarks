@@ -17,7 +17,7 @@ const MarksSchema = new mongoose.Schema({
     ref: 'Faculty',
     required: true,
   },
-  class: {
+  className: {
     type: String,
     required: true,
   },
