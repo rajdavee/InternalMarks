@@ -16,7 +16,7 @@ const app = express();
 
 
 app.use(cors({
-    origin: 'http://localhost:5173', // Your frontend's origin
+    origin: 'https://internal-marks-3dktkgkvm-raj-24642cc0.vercel.app', // Your frontend's origin
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true // If you need to handle cookies or authentication
   }));
