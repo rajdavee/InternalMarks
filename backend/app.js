@@ -16,7 +16,7 @@ const app = express();
 
 
 app.use(cors({
-    origin: 'https://internal-marks.vercel.app/', // Your frontend's origin
+    origin: 'https://internal-marks.vercel.app', // Your frontend's origin
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true // If you need to handle cookies or authentication
   }));
