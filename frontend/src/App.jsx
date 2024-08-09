@@ -15,7 +15,7 @@ const App = () => {
     <AuthProvider>
       <Router>
         <Routes>
-          <Route path="/login" element={<Login />} />
+        
           <Route element={<ProtectedRoute roles={['admin']} />}>
             <Route path="/admin-dashboard" element={<AdminDashboard />} />
             <Route path="/admin/students" element={<StudentManager />} />
@@ -28,7 +28,8 @@ const App = () => {
           <Route element={<ProtectedRoute roles={['faculty']} />}>
             <Route path="/faculty-dashboard" element={<FacultyDashboard />} />
           </Route>
-          <Route path="/" element={<h1>Home Page</h1>} />
+{/*           <Route path="/" element={<h1>Home Page</h1>} /> */}
+            <Route path="/" element={<Login />} />
         </Routes>
       </Router>
     </AuthProvider>
